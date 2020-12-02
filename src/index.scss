@@ -1,0 +1,45 @@
+@font-face {
+  font-family: 'SF Pro Bold';
+  src: url('./assets/fonts/SFPro/sf-ui-display-bold.otf');
+}
+@font-face {
+  font-family: 'SF Pro Black';
+  src: url('./assets/fonts/SFPro/sf-ui-display-black.otf');
+}
+
+@font-face {
+  font-family: 'SF Pro Light';
+  src: url('./assets/fonts/SFPro/sf-ui-display-light.otf');
+}
+
+@font-face {
+  font-family: 'SF Pro Medium';
+  src: url('./assets/fonts/SFPro/sf-ui-display-medium.otf');
+}
+
+@font-face {
+  font-family: 'VisbyCF DemiBold';
+  src: url('./assets/fonts/VisbyCF/VisbyCF-DemiBold.ttf');
+}
+
+@font-face {
+  font-family: 'VisbyCF Medium';
+  src: url('./assets/fonts/VisbyCF/VisbyCF-Medium.ttf');
+}
+
+@font-face {
+  font-family: 'VisbyCF Extra';
+  src: url('./assets/fonts/VisbyCF/VisbyCF-ExtraBold.ttf');
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
+    'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
