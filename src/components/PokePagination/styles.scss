@@ -1,0 +1,46 @@
+li {
+  list-style: none;
+  padding: 5px 10px;
+  &:focus {
+    outline: none;
+  }
+}
+
+.break {
+  display: flex;
+  align-items: center;
+}
+
+.pagination {
+  display: flex;
+  position: relative;
+  top: -200px;
+}
+
+.page-item {
+  margin: 0px 10px;
+  cursor: pointer;
+  outline: none;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.item {
+  cursor: pointer;
+  outline: none;
+  color: #102542;
+  font-size: 14px;
+  font-weight: bold;
+
+  &:hover {
+    text-decoration: none;
+    color: #eec643;
+    outline: none;
+  }
+}
+
+.active {
+  border-bottom: 1px solid #222;
+}

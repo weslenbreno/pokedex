@@ -1,15 +1,20 @@
 import LogoHeader from 'components/LogoHeader/LogoHeader';
-import SearchBar from 'components/SearchBar/SearchBar';
 import React from 'react';
 import { ThemeColors } from 'shared/constants/Colors';
 import styled from 'styled-components';
 import { ReactComponent as SVGIcon } from 'assets/images/avatar.svg';
+import { Link } from 'react-router-dom';
 
-const HeaderContainer = styled.div`
-  height: 40%;
+type HeaderProps = {
+  readonly bgColor: string;
+};
+
+const HeaderContainer = styled.div<HeaderProps>`
+  height: 50%;
   background-color: ${(props: any) => props?.bgColor || ThemeColors.yellow};
   display: flex;
   justify-content: center;
+  align-content: flex-start;
   flex-wrap: wrap;
 `;
 
@@ -22,14 +27,24 @@ const Menu = styled.div`
   padding: 25px 45px;
 `;
 
-const FavoriteLink = styled.div`
+type LinkProps = {
+  readonly bgColor?: string;
+};
+
+const FavoriteLink = styled.div<LinkProps>`
   display: flex;
   align-items: center;
-
   a {
     font-family: 'SF Pro Bold';
     font-size: 14px;
     text-decoration: none;
+    color: ${(props) => props?.color || ThemeColors.darkGrey};
+
+    &:visited,
+    &:hover,
+    &:active {
+      color: inherit;
+    }
   }
 `;
 
@@ -39,17 +54,22 @@ const PikachuIcon = styled(SVGIcon)`
   margin-left: 8px;
 `;
 
-const Header = () => {
+type Props = {
+  bgColor?: string;
+  logoColor?: string;
+};
+
+const Header: React.FC<Props> = ({ bgColor, logoColor, children }) => {
   return (
-    <HeaderContainer>
+    <HeaderContainer bgColor={bgColor || ''}>
       <Menu>
-        <LogoHeader />
-        <FavoriteLink>
-          <a href="/">Meus favoritos</a>
+        <LogoHeader fontColor={logoColor} />
+        <FavoriteLink color={logoColor}>
+          <Link to="/favorites">Meus favoritos</Link>
           <PikachuIcon />
         </FavoriteLink>
       </Menu>
-      <SearchBar placeholder="Procurar pokémon pelo nome..." />
+      {children}
     </HeaderContainer>
   );
 };
