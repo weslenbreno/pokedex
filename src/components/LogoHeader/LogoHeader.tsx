@@ -1,8 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
 import pokeball from 'assets/images/pokeball.svg';
+import { Link } from 'react-router-dom';
+import { ThemeColors } from 'shared/constants/Colors';
 
-const Logo = styled.div`
+type StyledProps = {
+  fontColor?: string;
+};
+
+const Logo = styled(Link)<StyledProps>`
+  text-decoration: none;
+  color: ${(props) => props.fontColor || ThemeColors.black};
   display: flex;
   align-items: center;
   margin: 0px 15px;
@@ -13,11 +21,15 @@ const Logo = styled.div`
   }
 `;
 
-const LogoHeader = () => {
+type Props = {
+  fontColor?: string | null | undefined;
+};
+
+const LogoHeader: React.FC<Props> = ({ fontColor }) => {
   return (
-    <Logo>
+    <Logo to="/" fontColor={fontColor}>
       <img src={pokeball} alt="pokeball" height={35} />
-      <h1>Pockédex</h1>
+      <h1>Pokédex</h1>
     </Logo>
   );
 };

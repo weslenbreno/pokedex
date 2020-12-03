@@ -1,18 +1,30 @@
-import { Home } from 'pages';
+import { Details, FavoritesPage, Home } from 'pages';
 import React from 'react';
 import { ThemeColors } from 'shared/constants/Colors';
 import styled from 'styled-components';
+import { Switch, Route } from 'react-router-dom';
 
 const AppContainer = styled.div`
-  flex: 1;
   min-height: 100vh;
+  height: fit-content;
   background-color: ${ThemeColors.bg};
+  overflow: auto;
 `;
 
 function App() {
   return (
     <AppContainer>
-      <Home />
+      <Switch>
+        <Route path="/favorites">
+          <FavoritesPage />
+        </Route>
+        <Route exact path="/detail/:id">
+          <Details />
+        </Route>
+        <Route exact path="/">
+          <Home />
+        </Route>
+      </Switch>
     </AppContainer>
   );
 }

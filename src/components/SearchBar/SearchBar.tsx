@@ -6,16 +6,31 @@ import { ReactComponent as SVGIcon } from 'assets/images/search.svg';
 const SearchIcon = styled(SVGIcon)`
   fill: #fff;
   height: 20px;
+  width: 20px;
   margin-right: 5px;
   position: absolute;
+  left: 0;
 `;
-const InputContainer = styled.div`
+const Container = styled.div`
   display: flex;
   align-items: center;
+  justify-content: center;
   height: fit-content;
+  width: 100%;
+`;
+
+const InputContainer = styled.div`
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: fit-content;
+  width: 50%;
+  min-width: 270px;
 `;
 const Input = styled.input`
-  min-width: 300px;
+  min-width: 250px;
+  width: 100%;
   border: none;
   background: transparent;
   color: ${ThemeColors.white};
@@ -44,10 +59,12 @@ type Props = {
 
 const SearchBar: React.FC<Props> = ({ placeholder }) => {
   return (
-    <InputContainer>
-      <SearchIcon />
-      <Input type="text" placeholder={placeholder} />
-    </InputContainer>
+    <Container>
+      <InputContainer>
+        <SearchIcon />
+        <Input type="text" placeholder={placeholder} />
+      </InputContainer>
+    </Container>
   );
 };
 
