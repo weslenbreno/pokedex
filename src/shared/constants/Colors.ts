@@ -5,6 +5,7 @@ export enum ThemeColors {
     darkGrey = '#363636',
     lightBlue = '#58ABF6',
     yellow = '#F2CB55',
+    redHeader = '#EB4971'
 };
 
 export enum TypesColors {
