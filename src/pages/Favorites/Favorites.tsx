@@ -1,86 +1,50 @@
-import React, { useEffect, useState } from 'react';
-import { Header, PokeCard, PokePagination, SearchBar } from 'components';
-import { Container } from './styles';
-import styled from 'styled-components';
-import { useFetch } from 'hooks/usefecth';
-import Lottie from 'lottie-react';
-import cardAnimation from 'assets/animations/card.json';
+import React, { useState, useEffect } from 'react';
+import { Header, FavoriteCard, SearchBar } from 'components';
+import { Container, CardGrid, NotFound, Content, Title } from './styles';
 import { ThemeColors } from 'shared/constants/Colors';
+import { useSelector } from 'react-redux';
+import { RootState } from 'store/store';
+import starImg from 'assets/images/star.svg';
 
-const CardGrid = styled.div`
-  position: relative;
-  top: -200px;
-  display: flex;
-  flex-wrap: wrap;
-  width: calc(90%);
-  flex-grow: 1;
-  justify-content: center;
-
-  @media (max-width: 500px) {
-    top: -100px;
-  }
-`;
-
-const Content = styled.div`
-  display: flex;
-  position: relative;
-  flex-wrap: wrap;
-  align-content: flex-start;
-  justify-content: space-around;
-  padding: 0px 25px;
-`;
-
-const CardGridSkeleton = () => {
-  return (
-    <CardGrid>
-      {Array(8)
-        .fill(0)
-        .map((item, index) => (
-          <div style={{ width: 300, flexGrow: 1 }} key={index}>
-            <Lottie animationData={cardAnimation} />
-          </div>
-        ))}
-    </CardGrid>
-  );
-};
-
-const BASE_URL = 'https://pokeapi.co/api/v2/pokemon';
-
-const Home = () => {
-  const [pageSize, setPageSize] = useState(0);
-  const [fetchUrl, setFetchUrl] = useState(`${BASE_URL}?limit=12&offset=0`);
-  const { data, error, isValidating } = useFetch(fetchUrl);
-
-  const setPage = ({ selected }) => {
-    setFetchUrl(`${BASE_URL}?limit=12&offset=${selected * 9}`);
-  };
+const Favorites = () => {
+  const pokemonList = useSelector((state: RootState) => state.app.favorites);
+  const [searchName, setSearchName] = useState('');
+  const [pokemonData, setPokemonData] = useState([]);
 
   useEffect(() => {
-    if (!pageSize || data?.count !== pageSize) {
-      setPageSize(Math.abs(data?.count / 9));
-    }
-  }, [data, pageSize]);
+    setPokemonData(pokemonList.filter((pk: any) => pk.name.includes(searchName?.toLowerCase())));
+  }, [pokemonList, searchName]);
 
   return (
     <Container>
-      <Header bgColor={ThemeColors.redHeader} logoColor={ThemeColors.white}>
-        <SearchBar placeholder="Procurar pokémon pelo nome..." />
+      <Header
+        bgColor={ThemeColors.redHeader}
+        logoColor={ThemeColors.white}
+        title={
+          <Title>
+            <img src={starImg} alt="star" height={25} />
+            <h2>Favoritos</h2>
+          </Title>
+        }
+      >
+        <SearchBar
+          placeholder="Procurar pokémon pelo nome..."
+          onSearch={(event: any) => setSearchName(event?.target?.value)}
+        />
       </Header>
-
       <Content>
-        {data ? (
+        {pokemonData?.length > 0 ? (
           <CardGrid>
-            {data?.results?.map((item: any) => (
-              <PokeCard fetchUrl={item.url} key={item.url} />
+            {pokemonData.map((item: any, index) => (
+              <FavoriteCard data={item} key={index} />
             ))}
           </CardGrid>
         ) : (
-          <CardGridSkeleton />
+          <NotFound>Nenhum pokemon</NotFound>
         )}
-        <PokePagination count={pageSize} onPageChange={setPage} />
       </Content>
     </Container>
   );
 };
 
-export default Home;
+export default Favorites;
