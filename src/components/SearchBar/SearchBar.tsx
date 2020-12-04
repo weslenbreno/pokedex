@@ -1,71 +1,21 @@
 import React from 'react';
-import { ThemeColors } from 'shared/constants/Colors';
-import styled from 'styled-components';
-import { ReactComponent as SVGIcon } from 'assets/images/search.svg';
-
-const SearchIcon = styled(SVGIcon)`
-  fill: #fff;
-  height: 20px;
-  width: 20px;
-  margin-right: 5px;
-  position: absolute;
-  left: 0;
-`;
-const Container = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: fit-content;
-  width: 100%;
-`;
-
-const InputContainer = styled.div`
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: fit-content;
-  width: 50%;
-  min-width: 270px;
-`;
-const Input = styled.input`
-  min-width: 250px;
-  width: 100%;
-  border: none;
-  background: transparent;
-  color: ${ThemeColors.white};
-  padding: 10px 0px;
-  border-bottom: 1px solid #fff;
-  padding-left: 35px;
-  color: ${ThemeColors.white};
-  font-family: 'SF Pro SemiBold';
-  font-size: 18px;
-  outline: none;
-  ::placeholder {
-    color: ${ThemeColors.white};
-    font-family: 'SF Pro SemiBold';
-    font-size: 18px;
-  }
-
-  &:focus {
-    border-color: ${ThemeColors.darkGrey};
-    transition: border-color 1s;
-  }
-`;
+import debounce from 'lodash/debounce';
+import { Container, InputContainer, SearchIcon, Input } from './styles';
 
 type Props = {
   placeholder: string;
+  onSearch?: any;
 };
 
-const SearchBar: React.FC<Props> = ({ placeholder }) => {
+const SearchBar: React.FC<Props> = ({ placeholder, onSearch }) => {
   return (
     <Container>
       <InputContainer>
         <SearchIcon />
-        <Input type="text" placeholder={placeholder} />
+        <Input type="text" placeholder={placeholder} onChange={debounce(onSearch, 500)} />
       </InputContainer>
     </Container>
   );
 };
 
-export default SearchBar;
+export default React.memo(SearchBar);
