@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { Header, PokeCard, PokePagination, SearchBar } from 'components';
-import { Container, CardGrid, Content } from './styles';
+import { Container, CardGrid, Content, HelperText, BarWraper, NotFound } from './styles';
 import useFetch from 'hooks/useFecth';
 import CardGridSkeleton from './CardGridSkeleton/CardGridSkeleton';
 
@@ -21,6 +21,10 @@ const Home = () => {
 
   const globalSearch = useCallback((event: any) => {
     const value = event?.target.value;
+
+    if (value.length <= 2) {
+      return setSearchName('');
+    }
     setSearchName(value);
     setFetchUrl(`${BASE_URL}?limit=2000`);
   }, []);
@@ -45,19 +49,24 @@ const Home = () => {
   return (
     <Container>
       <Header>
-        <SearchBar placeholder="Procurar pokémon pelo nome..." onSearch={globalSearch} />
+        <BarWraper>
+          <SearchBar placeholder="Procurar pokémon pelo nome..." onSearch={globalSearch} />
+          <HelperText>* Digite pelo menos 3 letras</HelperText>
+        </BarWraper>
       </Header>
       <Content>
-        {pokemonList.length > 0 || isValidating ? (
+        {pokemonList.length > 0 && !isValidating ? (
           <CardGrid>
             {pokemonList.map((item: any) => (
               <PokeCard fetchUrl={item.url} key={item.name} />
             ))}
           </CardGrid>
         ) : (
-          <CardGridSkeleton />
+          <>{isValidating ? <CardGridSkeleton /> : <NotFound>Nenhum Pokemon</NotFound>}</>
         )}
-        {!searchName && <PokePagination count={pageSize} onPageChange={setPage} />}
+        {pokemonList.length > 10 && !isValidating && (
+          <PokePagination count={pageSize} onPageChange={setPage} />
+        )}
       </Content>
     </Container>
   );

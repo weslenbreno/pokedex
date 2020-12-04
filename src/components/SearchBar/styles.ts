@@ -24,7 +24,7 @@ export const InputContainer = styled.div`
   align-items: center;
   justify-content: center;
   height: fit-content;
-  width: 50%;
+  width: 100%;
   min-width: 270px;
 `;
 export const Input = styled.input`
