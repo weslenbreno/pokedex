@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Header, FavoriteCard, SearchBar } from 'components';
-import { Container, CardGrid, NotFound, Content, Title } from './styles';
+import { Container, CardGrid, NotFound, Content, Title, BarWraper } from './styles';
 import { ThemeColors } from 'shared/constants/Colors';
 import { useSelector } from 'react-redux';
 import { RootState } from 'store/store';
@@ -27,10 +27,12 @@ const Favorites = () => {
           </Title>
         }
       >
-        <SearchBar
-          placeholder="Procurar pokémon pelo nome..."
-          onSearch={(event: any) => setSearchName(event?.target?.value)}
-        />
+        <BarWraper>
+          <SearchBar
+            placeholder="Procurar pokémon pelo nome..."
+            onSearch={(event: any) => setSearchName(event?.target?.value)}
+          />
+        </BarWraper>
       </Header>
       <Content>
         {pokemonData?.length > 0 ? (

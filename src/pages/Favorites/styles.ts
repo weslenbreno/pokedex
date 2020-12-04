@@ -7,6 +7,24 @@ export const Container = styled.div`
     height: 100vh;
 `;
 
+export const BarWraper = styled.div`
+  width: 40%;
+  min-width: 270px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  position: relative;
+  bottom: 25px;
+  
+  @media (max-width: 750px) {
+    justify-content: center;
+  }
+  @media (max-width: 500px) {
+    justify-content: center;
+    bottom: 0px;
+  }
+`;
+
 export const CardGrid = styled.div`
   position: relative;
   top: -200px;
