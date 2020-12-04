@@ -8,6 +8,8 @@ import PrevImg from 'assets/images/prev-arrow.png';
 type Props = {
   count: number | null;
   onPageChange?: (event: any) => void;
+  forcePage?: number;
+  initialPage?: number;
 };
 
 const Arrow = styled.img`
@@ -19,7 +21,7 @@ const Arrow = styled.img`
   }
 `;
 
-const PokePagination: React.FC<Props> = ({ count, onPageChange }) => {
+const PokePagination: React.FC<Props> = ({ count, onPageChange, forcePage, initialPage }) => {
   return (
     <ReactPaginate
       previousLabel={<Arrow src={PrevImg} height={25} />}
@@ -38,4 +40,4 @@ const PokePagination: React.FC<Props> = ({ count, onPageChange }) => {
   );
 };
 
-export default React.memo(PokePagination);
+export default PokePagination;

@@ -64,9 +64,7 @@ const Home = () => {
         ) : (
           <>{isValidating ? <CardGridSkeleton /> : <NotFound>Nenhum Pokemon</NotFound>}</>
         )}
-        {pokemonList.length > 10 && !isValidating && (
-          <PokePagination count={pageSize} onPageChange={setPage} />
-        )}
+        <PokePagination count={pageSize} onPageChange={setPage} />
       </Content>
     </Container>
   );
