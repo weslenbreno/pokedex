@@ -5,12 +5,12 @@ import { Link } from 'react-router-dom';
 import { ThemeColors } from 'shared/constants/Colors';
 
 type StyledProps = {
-  fontColor?: string;
+  color?: string;
 };
 
 const Logo = styled(Link)<StyledProps>`
   text-decoration: none;
-  color: ${(props) => props.fontColor || ThemeColors.black};
+  color: ${(props) => props.color || ThemeColors.black};
   display: flex;
   align-items: center;
   margin: 0px 15px;
@@ -22,16 +22,16 @@ const Logo = styled(Link)<StyledProps>`
 `;
 
 type Props = {
-  fontColor?: string | null | undefined;
+  color?: string | null | undefined;
 };
 
-const LogoHeader: React.FC<Props> = ({ fontColor }) => {
+const LogoHeader: React.FC<Props> = ({ color }) => {
   return (
-    <Logo to="/" fontColor={fontColor}>
+    <Logo to="/" color={color}>
       <img src={pokeball} alt="pokeball" height={35} />
       <h1>Pokédex</h1>
     </Logo>
   );
 };
 
-export default LogoHeader;
+export default React.memo(LogoHeader);
