@@ -46,6 +46,7 @@ export const CardFooter = styled.div`
 
 export const FooterBtn = styled.button`
   cursor: pointer;
+  background-color: transparent;
   border: none;
   text-decoration: none;
   transition: all 0.2s ease-in-out;
