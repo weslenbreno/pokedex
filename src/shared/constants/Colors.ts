@@ -9,5 +9,24 @@ export enum ThemeColors {
 };
 
 export enum TypesColors {
-    water = '#0053C4'
+    ghost = 'Dark violet',
+    steel = 'Cool gray',
+    dragon = 'Indigo',
+    flying = '#959595',
+    water = '#0053C4',
+    ice = 'Cyan',
+    teste = 'Dark teal',
+    grass = 'Green',
+    bug = 'Olive',
+    normal = 'Warm gray',
+    electric = '#FFC000',
+    ground = 'Sand',
+    rock = 'Brown',
+    fire = '#FA5858',
+    fighting = 'Maroon',
+    dark = 'Warm black',
+    psychic = 'Hot pink',
+    fairy = 'Pale magenta',
+    poison = 'Purple',
+    default = '#363636'
 }
