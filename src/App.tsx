@@ -1,25 +1,41 @@
+import 'react-toastify/dist/ReactToastify.css';
+import { Details, FavoritesPage, Home } from 'pages';
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { ThemeColors } from 'shared/constants/Colors';
+import styled from 'styled-components';
+import { Switch, Route } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
+import { ToastContainer } from 'react-toastify';
+import store, { persistor } from 'store/store';
+
+const AppContainer = styled.div`
+  min-height: 100vh;
+  height: fit-content;
+  background-color: ${ThemeColors.bg};
+  overflow: auto;
+`;
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AppContainer>
+      <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
+          <Switch>
+            <Route path="/favorites">
+              <FavoritesPage />
+            </Route>
+            <Route exact path="/detail/:id">
+              <Details />
+            </Route>
+            <Route exact path="/">
+              <Home />
+            </Route>
+          </Switch>
+          <ToastContainer />
+        </PersistGate>
+      </Provider>
+    </AppContainer>
   );
 }
 
