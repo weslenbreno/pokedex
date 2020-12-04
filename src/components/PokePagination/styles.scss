@@ -15,6 +15,10 @@ li {
   display: flex;
   position: relative;
   top: -200px;
+
+  @media (max-width: 500px) {
+    top: -100px;
+  }
 }
 
 .page-item {
