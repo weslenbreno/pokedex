@@ -34,7 +34,8 @@ li {
   font-size: 14px;
   font-weight: bold;
 
-  &:hover {
+  &:hover,
+  &:focus {
     text-decoration: none;
     color: #eec643;
     outline: none;

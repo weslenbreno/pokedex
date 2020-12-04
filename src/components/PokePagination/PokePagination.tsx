@@ -1,17 +1,29 @@
 import React from 'react';
 import './styles.scss';
 import ReactPaginate from 'react-paginate';
+import styled from 'styled-components';
+import NextImg from 'assets/images/next-arrow.png';
+import PrevImg from 'assets/images/prev-arrow.png';
 
 type Props = {
   count: number | null;
   onPageChange?: (event: any) => void;
 };
 
+const Arrow = styled.img`
+  height: 20px;
+  cursor: pointer;
+  &:active,
+  &:focus {
+    outline: none !important;
+  }
+`;
+
 const PokePagination: React.FC<Props> = ({ count, onPageChange }) => {
   return (
     <ReactPaginate
-      previousLabel={'previous'}
-      nextLabel={'next'}
+      previousLabel={<Arrow src={PrevImg} height={25} />}
+      nextLabel={<Arrow src={NextImg} height={25} />}
       breakLabel={'...'}
       breakClassName={'break-me item'}
       pageCount={count}
