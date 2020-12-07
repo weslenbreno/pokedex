@@ -19,7 +19,11 @@ A aplicação estará disponível em localhost na porta 3000.
 
 ## Intruções para deploy com Docker
 
-Após configurar o ambiente com Docker e docker compose, rode o comando:
+Configure o Docker e o docker compose:
+
+Instruções para instalação: https://docs.docker.com/desktop/
+
+Após configurar o ambiente com Docker e docker compose rode o comando:
 
 ### `docker-compose up --build -d`
 
